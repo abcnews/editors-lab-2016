@@ -29,36 +29,25 @@ visualisationUpdateFn = visualisation(document.querySelector('.visualisation'), 
 rootEl.addEventListener('click', function (event) {
     var targetEl = event.target;
 
-    if (targetEl.dataset.choiceValue != null) {
+    if (targetEl.dataset.multiplierChoice != null) {
         return makeChoice(targetEl);
     }
 });
 
 function makeChoice(buttonEl) {
     var sectionEl = buttonEl.parentElement;
-    var choiceValue = buttonEl.dataset.choiceValue;
-    var choiceName;
 
-    function isSectionOptional(sectionEl) {
-        return sectionEl.dataset.choiceName != null &&
-            sectionEl.dataset.choiceValue != null;
-    }
-
-    function updateVisibility(sectionEl) {
-        sectionEl.style.display = sectionEl.dataset.choiceValue === choiceValue ? '' : 'none';
-    }
-
-    while (sectionEl.dataset.choiceName == null) {
+    while (sectionEl.dataset.multiplier == null) {
         sectionEl = sectionEl.parentElement;
     }
 
-    choiceName = sectionEl.choiceName;
+    sectionEl.dataset.multiplier = buttonEl.dataset.multiplierChoice;
 
-    sectionEls.filter(isSectionOptional).forEach(updateVisibility);
-
-    slice.call(sectionEl.querySelectorAll('button[data-choice-value]')).forEach(function (el) {
+    slice.call(sectionEl.querySelectorAll('button[data-multiplier-choice]')).forEach(function (el) {
         el.disabled = (el === buttonEl);
     });
+
+    update();
 }
 
 function update() {
@@ -107,7 +96,7 @@ window.addEventListener('scroll', throttle(update, 200));
 update();
 
 sectionEls.forEach(function (sectionEl) {
-    var buttonEl = sectionEl.querySelector('button[data-choice-value]');
+    var buttonEl = sectionEl.querySelector('button[data-multiplier-choice]');
 
     if (buttonEl != null) {
         makeChoice(buttonEl);
