@@ -1,5 +1,29 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html,
 body {
     margin: 0;
     padding: 0;
+}
+
+html {
+    // font-size: 3.34vw;
+    font-size: calc(50% + 1.67vw);
+}
+
+@media (min-width: $breakpoint) {
+    html {
+        font-size: 100%;
+    }
+}
+
+body {
+    color: $textColor;
+    background-color: $backgroundColor;
+    font-family: sans-serif;
+    transition: .5s background-color;
 }

@@ -1,0 +1,14 @@
+.content {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.content :first-child {
+    margin-top: 0;
+}
+
+.content :last-child {
+    margin-bottom: 0;
+}
+

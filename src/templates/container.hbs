@@ -1,3 +1,60 @@
 <div class="container">
-	<h1>{{title}}</h1>
+	<div class="visualisation">
+        <div class="panel">
+            <div class="value"></div>
+        </div>
+    </div>
+    <div class="sections">
+        <div class="section">
+            <div class="panel">
+                <div class="content">
+                    <p>Start</p>
+                </div>
+            </div>
+        </div>
+        <div class="section" data-multiplier="0.9">
+            <div class="panel">
+                <div class="content">
+                    <p>Of Voting Age</p>
+                </div>
+            </div>
+        </div>
+        <div class="section" data-multiplier="0.9">
+            <div class="panel">
+                <div class="content">
+                    <p>Registered To Vote</p>
+                </div>
+            </div>
+        </div>
+        <div class="section" data-choice-name="marginal">
+            <div class="panel">
+                <div class="content">
+                    <p>Marginal Seats</p>
+                    <button data-choice-value="a">A</button>
+                    <button data-choice-value="b">B</button>
+                </div>
+            </div>
+        </div>
+        <div class="section" data-multiplier="0.5" data-choice-name="marginal" data-choice-value="a">
+            <div class="panel">
+                <div class="content">
+                    <p>Marginal Seats: A</p>
+                </div>
+            </div>
+        </div>
+        <div class="section" data-multiplier="0.1" data-choice-name="marginal" data-choice-value="b">
+            <div class="panel">
+                <div class="content">
+                    <p>Marginal Seats: B</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="panel">
+                <div class="content">
+                    <p>End</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
