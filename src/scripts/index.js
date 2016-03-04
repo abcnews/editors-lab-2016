@@ -22,7 +22,7 @@ rootEl.innerHTML = template({
 
 sectionEls = slice.call(document.querySelectorAll('.section'));
 
-visualisationUpdateFn = visualisation(document.querySelector('.visualisation .value'), 22000000);
+visualisationUpdateFn = visualisation(document.querySelector('.visualisation'), 22000000);
 
 rootEl.addEventListener('click', function (event) {
     var targetEl = event.target;
