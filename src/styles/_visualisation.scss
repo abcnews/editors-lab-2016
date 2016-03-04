@@ -17,11 +17,22 @@
 
 .visualisation .value {
     position: absolute;
-    top: 30%;
+    top: 22%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 2.25rem;
     transition: 1.5s opacity;
+    padding: 5px;
+    border-radius: 3px;
+    transform: translate(-50%,-50%);
+    background-color: $backgroundColor;
+    transition: .25s background-color;
+}
+
+body.alt {
+    .visualisation .value {
+        background-color: $altBackgroundColor;
+    }
 }
 
 .visualisation .value::before {
