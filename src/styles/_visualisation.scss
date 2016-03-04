@@ -4,11 +4,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    transition: 1.5s transform;
+    transition: 1.5s opacity, 1.5s transform;
 }
 
 .visualisation.peeking {
     transform: translate(0, 57.5%);
+}
+
+.visualisation.hiding {
+    opacity: 0;
 }
 
 .visualisation .value {

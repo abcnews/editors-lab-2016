@@ -90,6 +90,12 @@ function update() {
         visualisationEl.classList.remove('peeking');
     }
 
+    if (windowScrollY > (sectionEls.length - 3) * windowHeight) {
+        visualisationEl.classList.add('hiding');
+    } else {
+        visualisationEl.classList.remove('hiding');
+    }
+
     if (appliedSectionEls.length % 2) {
         document.body.classList.add('alt');
     } else {
