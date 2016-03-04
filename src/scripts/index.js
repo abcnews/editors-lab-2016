@@ -13,7 +13,9 @@ template = require('../templates/container.hbs');
 visualisation = require('./visualisation');
 slice = Array.prototype.slice;
 
-TOTAL = 22000000;
+// population clock as at "Fri Mar 04 2016 14:42:32 GMT+1100 (AEDT)"
+// http://www.abs.gov.au/ausstats/abs%40.nsf/94713ad445ff1425ca25682000192af2/1647509ef7e25faaca2568a900154b63?OpenDocument
+TOTAL = 24016680;
 
 rootEl = document.getElementById('root');
 rootEl.innerHTML = template({
@@ -24,7 +26,7 @@ visualisationEl = document.querySelector('.visualisation');
 
 sectionEls = slice.call(document.querySelectorAll('.section'));
 
-visualisationUpdateFn = visualisation(document.querySelector('.visualisation'), 22000000);
+visualisationUpdateFn = visualisation(document.querySelector('.visualisation'), TOTAL);
 
 rootEl.addEventListener('click', function (event) {
     var targetEl = event.target;
