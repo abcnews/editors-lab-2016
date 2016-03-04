@@ -1,4 +1,3 @@
-var NUMBER_DELIMITER_PATTERN = /(\d)(?=(\d{3})+(?!\d))/g;
 
 var d3 = require('d3');
 var width = window.innerWidth,
@@ -34,11 +33,7 @@ function visualisation(el, maxValue) {
 
 module.exports = visualisation;
 
-
 function update(value) {
-
-    rootEl.querySelector('.value').innerHTML = value.toString().replace(NUMBER_DELIMITER_PATTERN, '$1' + ',');
-
     var target = Math.ceil(value/10000);
 
     nodes.forEach(distance);

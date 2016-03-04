@@ -4,13 +4,15 @@
  * @version development
  */
 
-var throttle, template, visualisation, slice,
+var throttle, template, visualisation, util, slice,
     TOTAL,
-    rootEl, visualisationEl, sectionEls, visualisationUpdateFn;
+    rootEl, visualisationEl, visualisationValueEl,
+    sectionEls, finalProductEl, visualisationUpdateFn;
 
 throttle = require('throttleit');
 template = require('../templates/container.hbs');
 visualisation = require('./visualisation');
+util = require('./util');
 slice = Array.prototype.slice;
 
 // population clock as at "Fri Mar 04 2016 14:42:32 GMT+1100 (AEDT)"
@@ -21,10 +23,10 @@ rootEl = document.getElementById('root');
 rootEl.innerHTML = template({
     title: document.title
 });
-
 visualisationEl = document.querySelector('.visualisation');
-
+visualisationValueEl = visualisationEl.querySelector('.value');
 sectionEls = slice.call(document.querySelectorAll('.section'));
+finalProductEl = document.querySelector('.final-product');
 
 visualisationUpdateFn = visualisation(document.querySelector('.visualisation'), TOTAL);
 
@@ -74,9 +76,19 @@ function update() {
 
     var product = Math.round(appliedSectionEls.reduce(reducer, TOTAL));
 
+    var formattedProduct = util.formatNumber(product);
+
     visualisationUpdateFn(product);
 
-    visualisationEl.style.opacity = appliedSectionEls.length ? 1 : 0;
+    visualisationValueEl.innerHTML = formattedProduct;
+
+    finalProductEl.innerHTML = formattedProduct; // eek
+
+    if (windowScrollY < windowHeight / 4) {
+        visualisationEl.classList.add('peeking');
+    } else {
+        visualisationEl.classList.remove('peeking');
+    }
 
     if (appliedSectionEls.length % 2) {
         document.body.classList.add('alt');
