@@ -4,13 +4,15 @@
  * @version development
  */
 
-var throttle, template, visualisation, slice,
+var throttle, template, visualisation, util, slice,
     TOTAL,
-    rootEl, visualisationEl, sectionEls, visualisationUpdateFn;
+    rootEl, visualisationEl, visualisationValueEl,
+    sectionEls, finalProductEl, visualisationUpdateFn;
 
 throttle = require('throttleit');
 template = require('../templates/container.hbs');
 visualisation = require('./visualisation');
+util = require('./util');
 slice = Array.prototype.slice;
 
 TOTAL = 22000000;
@@ -19,10 +21,10 @@ rootEl = document.getElementById('root');
 rootEl.innerHTML = template({
     title: document.title
 });
-
 visualisationEl = document.querySelector('.visualisation');
-
+visualisationValueEl = visualisationEl.querySelector('.value');
 sectionEls = slice.call(document.querySelectorAll('.section'));
+finalProductEl = document.querySelector('.final-product');
 
 visualisationUpdateFn = visualisation(document.querySelector('.visualisation'), 22000000);
 
@@ -72,7 +74,13 @@ function update() {
 
     var product = Math.round(appliedSectionEls.reduce(reducer, TOTAL));
 
+    var formattedProduct = util.formatNumber(product);
+
     visualisationUpdateFn(product);
+
+    visualisationValueEl.innerHTML = formattedProduct;
+
+    finalProductEl.innerHTML = formattedProduct; // eek
 
     if (windowScrollY < windowHeight / 4) {
         visualisationEl.classList.add('peeking');

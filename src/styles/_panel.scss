@@ -15,6 +15,10 @@
     justify-content: center;
 }
 
+.panel.justify-end {
+    justify-content: flex-end;
+}
+
 .panel.justify-between {
     justify-content: space-between;
 }
