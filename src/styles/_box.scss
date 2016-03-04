@@ -1,0 +1,27 @@
+.box {
+    margin: 1rem;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: $boxBackgroundColor;
+    font-size: 1.125rem;
+    transition: .25s background-color;
+}
+
+body.alt .box {
+    background-color: $altBoxBackgroundColor;
+}
+
+@media (min-width: $breakpoint) {
+    .box {
+        text-align: center;
+    }
+}
+
+.box :first-child {
+    margin-top: 0;
+}
+
+.box :last-child {
+    margin-bottom: 0;
+}
+

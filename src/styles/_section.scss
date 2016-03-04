@@ -1,4 +1,10 @@
 .section {
     position: relative;
     min-height: 100vh;
+    opacity: 0;
+    transition: .25s opacity;
+}
+
+.section.is-active {
+    opacity: 1;
 }
