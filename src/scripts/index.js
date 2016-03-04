@@ -74,7 +74,11 @@ function update() {
 
     visualisationUpdateFn(product);
 
-    visualisationEl.style.opacity = appliedSectionEls.length ? 1 : 0;
+    if (windowScrollY < windowHeight / 4) {
+        visualisationEl.classList.add('peeking');
+    } else {
+        visualisationEl.classList.remove('peeking');
+    }
 
     if (appliedSectionEls.length % 2) {
         document.body.classList.add('alt');

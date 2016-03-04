@@ -39,6 +39,7 @@ h2 {
 }
 
 h1 {
+    margin: 0 0 1rem;
     font-size: 4rem;
     line-height: 1;
     text-align: center;
@@ -55,7 +56,7 @@ img {
 }
 
 h1 + .image img {
-    max-width: 80%;
+    max-width: 70%;
 }
 
 button {
