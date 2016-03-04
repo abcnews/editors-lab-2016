@@ -6,7 +6,7 @@
 
 var throttle, template, visualisation, slice,
     TOTAL,
-    rootEl, sectionEls, visualisationUpdateFn;
+    rootEl, visualisationEl, sectionEls, visualisationUpdateFn;
 
 throttle = require('throttleit');
 template = require('../templates/container.hbs');
@@ -20,9 +20,11 @@ rootEl.innerHTML = template({
     title: document.title
 });
 
+visualisationEl = document.querySelector('.visualisation');
+
 sectionEls = slice.call(document.querySelectorAll('.section'));
 
-visualisationUpdateFn = visualisation(document.querySelector('.visualisation .value'), 22000000);
+visualisationUpdateFn = visualisation(visualisationEl.querySelector('.value'), 22000000);
 
 rootEl.addEventListener('click', function (event) {
     var targetEl = event.target;
@@ -59,15 +61,18 @@ function makeChoice(buttonEl) {
     });
 }
 
-function updateVisualisation() {
+function update() {
     var windowScrollY = window.scrollY;
-    var halfWindowHeight = Math.round(window.innerHeight / 2);
+    var windowHeight = window.innerHeight;
+    var halfWindowHeight = Math.round(windowHeight / 2);
+    // var quarterWindowHeight = Math.round(windowHeight / 4);
 
     function isSectionApplied(sectionEl) {
         return sectionEl.dataset.multiplier != null &&
             sectionEl.offsetWidth > 0 &&
             sectionEl.offsetHeight > 0 &&
             sectionEl.offsetTop <= windowScrollY + halfWindowHeight;
+            // sectionEl.offsetTop <= windowScrollY + quarterWindowHeight;
     }
 
     function reducer(product, sectionEl) {
@@ -80,12 +85,26 @@ function updateVisualisation() {
 
     visualisationUpdateFn(product);
 
-    document.body.style.backgroundColor = appliedSectionEls.length % 2 ? 'red' : 'blue';
+    visualisationEl.style.opacity = appliedSectionEls.length ? 1 : 0;
+
+    if (appliedSectionEls.length % 2) {
+        document.body.classList.add('alt');
+    } else {
+        document.body.classList.remove('alt');
+    }
+
+    sectionEls.forEach(function (sectionEl) {
+        if (sectionEl.offsetTop >= windowScrollY && sectionEl.offsetTop < windowScrollY + windowHeight) {
+            sectionEl.classList.add('is-active');
+        } else {
+            sectionEl.classList.remove('is-active');
+        }
+    });
 }
 
-window.addEventListener('scroll', throttle(updateVisualisation, 200));
+window.addEventListener('scroll', throttle(update, 200));
 
-updateVisualisation();
+update();
 
 sectionEls.forEach(function (sectionEl) {
     var buttonEl = sectionEl.querySelector('button[data-choice-value]');

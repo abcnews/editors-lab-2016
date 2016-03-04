@@ -11,8 +11,8 @@ body {
 }
 
 html {
-    // font-size: 3.34vw;
-    font-size: calc(50% + 1.67vw);
+    font-size: 75%;
+    font-size: calc(50% + 1.425vw); // vmin?
 }
 
 @media (min-width: $breakpoint) {
@@ -24,6 +24,36 @@ html {
 body {
     color: $textColor;
     background-color: $backgroundColor;
-    font-family: sans-serif;
-    transition: .5s background-color;
+    font-family: $bodyFont;
+    transition: .25s background-color;
+}
+
+body.alt {
+    background-color: $altBackgroundColor;
+}
+
+h1,
+h2 {
+    font-weight: normal;
+    font-family: $cursiveFont;
+}
+
+h1 {
+    font-size: 4rem;
+    line-height: 1;
+    text-align: center;
+}
+
+.image {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h1 + .image img {
+    max-width: 80%;
 }
